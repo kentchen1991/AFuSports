@@ -16,6 +16,9 @@
 		18DBCAA41C2ADF2D00A670F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DBCAA31C2ADF2D00A670F8 /* AppDelegate.m */; };
 		18DBCAAB1C2AE04800A670F8 /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DBCAAA1C2AE04800A670F8 /* Entity.m */; };
 		18DBCAB81C2AE20900A670F8 /* StringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DBCAB71C2AE20900A670F8 /* StringUtil.m */; };
+		5CDBBEF71C2CDA16004CCA88 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDBBEF61C2CDA16004CCA88 /* NSString+Helper.m */; };
+		5CDBBEFA1C2D1CDB004CCA88 /* MyHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDBBEF91C2D1CDB004CCA88 /* MyHttpRequest.m */; };
+		5CDBBEFD1C2D1CF3004CCA88 /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDBBEFC1C2D1CF3004CCA88 /* HttpUtil.m */; };
 		850A9EBC3753C759640395E6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5373A0108320713AE074958A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +54,12 @@
 		18DBCAB71C2AE20900A670F8 /* StringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtil.m; sourceTree = "<group>"; };
 		43B6E0AC6DC6992DBB8071D6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5373A0108320713AE074958A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CDBBEF51C2CDA16004CCA88 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
+		5CDBBEF61C2CDA16004CCA88 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
+		5CDBBEF81C2D1CDB004CCA88 /* MyHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHttpRequest.h; sourceTree = "<group>"; };
+		5CDBBEF91C2D1CDB004CCA88 /* MyHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyHttpRequest.m; sourceTree = "<group>"; };
+		5CDBBEFB1C2D1CF3004CCA88 /* HttpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpUtil.h; sourceTree = "<group>"; };
+		5CDBBEFC1C2D1CF3004CCA88 /* HttpUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpUtil.m; sourceTree = "<group>"; };
 		83CF44E2D8274DC7B26D27D9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +115,7 @@
 			children = (
 				18DBCABC1C2AE2E700A670F8 /* Frameworks */,
 				18DBCAA11C2ADEE600A670F8 /* General */,
+				5CDBBEF41C2CD81F004CCA88 /* Category */,
 				18DBCAAD1C2AE0BA00A670F8 /* Http */,
 				18DBCAB31C2AE14C00A670F8 /* DB */,
 				18DBCAB51C2AE1E500A670F8 /* Util */,
@@ -215,6 +225,10 @@
 		18DBCAAF1C2AE0FF00A670F8 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				5CDBBEF81C2D1CDB004CCA88 /* MyHttpRequest.h */,
+				5CDBBEF91C2D1CDB004CCA88 /* MyHttpRequest.m */,
+				5CDBBEFB1C2D1CF3004CCA88 /* HttpUtil.h */,
+				5CDBBEFC1C2D1CF3004CCA88 /* HttpUtil.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -347,6 +361,15 @@
 				43B6E0AC6DC6992DBB8071D6 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		5CDBBEF41C2CD81F004CCA88 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				5CDBBEF51C2CDA16004CCA88 /* NSString+Helper.h */,
+				5CDBBEF61C2CDA16004CCA88 /* NSString+Helper.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,10 +508,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				18DBCAAB1C2AE04800A670F8 /* Entity.m in Sources */,
+				5CDBBEFA1C2D1CDB004CCA88 /* MyHttpRequest.m in Sources */,
 				18DBCA821C2ADBBC00A670F8 /* ViewController.m in Sources */,
+				5CDBBEFD1C2D1CF3004CCA88 /* HttpUtil.m in Sources */,
 				18DBCA7C1C2ADBBC00A670F8 /* main.m in Sources */,
 				18DBCAA41C2ADF2D00A670F8 /* AppDelegate.m in Sources */,
 				18DBCAB81C2AE20900A670F8 /* StringUtil.m in Sources */,
+				5CDBBEF71C2CDA16004CCA88 /* NSString+Helper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

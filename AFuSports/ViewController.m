@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import <AFNetworking.h>
 #import <SVProgressHUD.h>
+#import "NSString+Helper.h"
+#import "ApiDetail.h"
 @interface ViewController ()
 
 @end
@@ -19,10 +21,34 @@
     [super viewDidLoad];
     
     self.view.backgroundColor =[UIColor redColor];
-    // Do any additional setup after loading the view, typically from a nib.
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [SVProgressHUD showErrorWithStatus:@"asdasd"];
-    });
+    [self getCodeTest];
+}
+
+- (void)getCodeTest {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    //设置返回类型
+    NSString *urlkey = [NSString stringWithFormat:@"/api/member/captcha/%@/%@",@"login",@"13400645310"];
+    [self addHeaderTokenWithRequest:manager.requestSerializer andUrlString:urlkey];
+    NSLog(@"%@",manager.requestSerializer.HTTPRequestHeaders);
+    // 网络访问是异步的,回调是主线程的,因此程序员不用管在主线程更新UI的事情
+    NSString *baseurl = [NSString stringWithFormat:@"%@%@",AFuBaseAPI,urlkey];
+    [manager GET:baseurl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@", operation.responseString);
+        // 提问:NSURLConnection异步方法回调,是在子线程
+        // 得到回调之后,通常更新UI,是在主线程
+        NSLog(@"%@", [NSThread currentThread]);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+    
+}
+
+- (void)addHeaderTokenWithRequest:(AFHTTPRequestSerializer*)request andUrlString:(NSString*)urlStr {
+    NSString *timeStr = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] * 1000];
+    [request setValue:@"APP" forHTTPHeaderField:@"Api-Id"];
+    [request setValue:timeStr forHTTPHeaderField:@"Api-Timestamp"];
+    [request setValue:[NSString sha256:[NSString stringWithFormat:@"%@%@%@%@",@"APP",urlStr,timeStr,privateKey]] forHTTPHeaderField:@"Api-Sign"];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
